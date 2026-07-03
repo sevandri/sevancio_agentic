@@ -105,7 +105,7 @@ function hermesBaseUrl() {
 
 function hermesHeaders() {
   return {
-    Authorization: *** ${process.env.API_SERVER_KEY || "sevancio-local-dev"}`,
+    Authorization: `Bearer ${process.env.API_SERVER_KEY || "sevancio-local-dev"}`,
     "Content-Type": "application/json",
   };
 }

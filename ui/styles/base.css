@@ -1,9 +1,6 @@
 /* ============================================
    Sevancio — Base Styles
    ============================================ */
-@import url('https://api.fontsource.org/v1/css/fonts/outfit');
-@import url('https://api.fontsource.org/v1/css/fonts/satoshi');
-@import url('https://api.fontsource.org/v1/css/fonts/jetbrains-mono');
 @import './tokens.css';
 
 *, *::before, *::after {

@@ -50,7 +50,7 @@
   --svc-glow-aurora: 0 0 12px rgba(123,97,255,0.3);
 
   /* ── Typography ── */
-  --svc-font-body:    'Satoshi', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --svc-font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --svc-font-display: 'Outfit', 'Space Grotesk', sans-serif;
   --svc-font-mono:    'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
   --svc-font-size-xs:   11px;

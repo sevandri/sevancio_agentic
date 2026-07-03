@@ -131,7 +131,7 @@ function resolveContextPath(value) {
 function loadUserContext() {
   const MAX_CHARS = 12000;
   // Single source of truth: Hermes's own learned context (USER.md + MEMORY.md), so
-  // Iris and Hermes stay in sync — no copying, no override files. We do NOT load
+  // Sevancio and Hermes stay in sync — no copying, no override files. We do NOT load
   // Hermes's SOUL.md (that's Hermes's persona and would fight Sevancio's identity).
   // Override the location with HERMES_HOME if Hermes lives somewhere else.
   const hermesHome = process.env.HERMES_HOME
@@ -248,7 +248,7 @@ function serializeConfigValue(value) {
   return /[\s"#]/.test(str) ? `"${str.replace(/"/g, '\\"')}"` : str;
 }
 
-// Merge updates into ~/.iris/.env (preserving comments/other keys) and apply them
+// Merge updates into ~/.sevancio/.env (preserving comments/other keys) and apply them
 // to process.env so they take effect on the next wake without a full restart.
 function writeUserConfig(rawUpdates) {
   const updates = {};
@@ -1278,7 +1278,7 @@ function createWindow() {
 // ===== Glass HUD =====
 // One window, two shapes. Deck: a normal rounded app window. HUD: the same
 // window stretched over the whole screen, transparent, always on top, and
-// click-through except where the renderer marks interactive elements — Iris
+// click-through except where the renderer marks interactive elements — Sevancio
 // floats over everything while you keep working underneath.
 let uiMode = "deck";
 let deckBounds = null;
@@ -1375,13 +1375,13 @@ function hudHotkey() {
 function installAppMenu() {
   if (process.platform !== "darwin") return;
   app.setAboutPanelOptions({
-    applicationName: "Iris",
+    applicationName: "Sevancio",
     applicationVersion: app.getVersion(),
     ...(appIcon ? { iconPath } : {}),
   });
   const menu = Menu.buildFromTemplate([
     {
-      label: "Iris",
+      label: "Sevancio",
       submenu: [
         { role: "about" },
         { type: "separator" },
@@ -1450,7 +1450,7 @@ app.whenReady().then(() => {
   ipcMain.on("svc:boot-done", () => sendWelcomeGreeting());
   ipcMain.on("svc:ui-context", (_event, context) => {
     if (context && typeof context === "object") {
-      irisUiContext = context;
+      sevancioUiContext = context;
     }
   });
   createWindow();

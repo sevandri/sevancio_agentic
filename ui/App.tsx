@@ -111,7 +111,7 @@ export default function App() {
     }
   }, [sidecarRunning]);
 
-  // "Thinking" detector: you stopped talking but Iris hasn't started speaking
+  // "Thinking" detector: you stopped talking but Sevancio hasn't started speaking
   // yet — that gap gets the orbiting swirl. Driven by the real mic level, so
   // it needs no extra events from the model.
   useEffect(() => {
@@ -174,7 +174,7 @@ export default function App() {
 
   // Resolve which Hermes chat thread to mirror on boot: the last one used
   // (persisted on every switch). If that thread was deleted in Hermes, fall
-  // back to the most recently active Iris session.
+  // back to the most recently active Sevancio session.
   async function initHermesSession() {
     try {
       const [config, list] = await Promise.all([
@@ -209,7 +209,7 @@ export default function App() {
   }
 
   // New thread ids come from Hermes itself (native `api_…` format + an
-  // "Iris Voice — <date>" title) so sessions look the same in the Hermes app.
+  // "Sevancio Voice" title) so sessions look the same in the Hermes app.
   async function newHermesSession() {
     if (!hasBridge) return;
     const created = await window.sevancio.createHermesSession();
@@ -325,7 +325,7 @@ export default function App() {
     };
   }, [hasBridge, uiMode]);
 
-  // Local "Hey Iris" wake word: only listens while asleep; a detection wakes Iris
+  // Local "Hey Sevancio" wake word: only listens while asleep; a detection wakes Sevancio
   // exactly like pressing W. Fully on-device, opt-in via Settings.
   useWakeWord(
     hasBridge && wakeWordEnabled && !sidecarRunning,
@@ -402,7 +402,7 @@ export default function App() {
       doneTimer = window.setTimeout(() => {
         setBootActive(false);
         setBootClosing(false);
-        // Tell main the boot screen is gone so Iris can speak its welcome now.
+        // Tell main the boot screen is gone so Sevancio can speak its welcome now.
         if (hasBridge) window.sevancio.notifyBootDone();
       }, FADE_MS);
     }, Math.max(0, MIN_VISIBLE_MS - elapsed));
@@ -813,7 +813,7 @@ export default function App() {
   const caption = useMemo(() => {
     if (!sidecarRunning)
       return {
-        text: wakeWordEnabled ? "Say “Hey Iris” or press W to wake" : "Press W to wake Iris",
+        text: wakeWordEnabled ? 'Say "Hey Sevancio" or press W to wake' : "Press W to wake Sevancio",
         dim: true,
       };
     if (audioState === "speaking") return { text: "Speaking…", dim: false };
@@ -854,7 +854,7 @@ export default function App() {
                 ...item,
                 status: "completed",
                 output:
-                  "## Demo handoff complete\n\nHermes finished the simulated research run and sent the result back to Iris.",
+                  "## Demo handoff complete\n\nHermes finished the simulated research run and sent the result back to Sevancio.",
                 updatedAt: Date.now(),
               }
             : item,
@@ -957,7 +957,7 @@ export default function App() {
             />
           </div>
 
-          {/* CENTER — Iris */}
+          {/* CENTER — Sevancio */}
           <CenterStage
             reactorState={reactorState}
             inputLevelRef={audio.inputLevelRef}
@@ -1007,7 +1007,7 @@ export default function App() {
               X
             </a>{" "}
             ·{" "}
-            <a href="https://github.com/ASHR12/iris" target="_blank" rel="noreferrer">
+            <a href="https://github.com/ASHR12/sevancio" target="_blank" rel="noreferrer">
               GitHub
             </a>
           </span>

@@ -13,7 +13,7 @@ type AudioChunk = {
   mimeType?: string;
 };
 
-type IrisUiAction = {
+type SevancioUiAction = {
   action:
     | "open_latest_hermes_result"
     | "open_current_hermes_result"
@@ -50,7 +50,7 @@ type SevancioConfig = {
   speakerEchoGuard: string;
 };
 
-type IrisTestResult = { ok: boolean; error?: string; health?: Record<string, unknown> };
+type SevancioTestResult = { ok: boolean; error?: string; health?: Record<string, unknown> };
 
 type HermesHistoryTask = {
   id: string;
@@ -85,7 +85,7 @@ type HermesSessionInfo = {
 
 type HermesSessionsResult = { ok: boolean; sessions: HermesSessionInfo[]; error?: string };
 
-type IrisApi = {
+type SevancioApi = {
   startSidecar: (options?: { mode?: SidecarMode }) => Promise<{ running: boolean; pid: number | null }>;
   stopSidecar: () => Promise<{ running: boolean; pid: number | null }>;
   getSidecarStatus: () => Promise<{ running: boolean; pid: number | null }>;
@@ -97,9 +97,9 @@ type IrisApi = {
   }>;
   getConfig: () => Promise<SevancioConfig>;
   saveConfig: (updates: Record<string, string>) => Promise<SevancioConfig>;
-  testGemini: (key?: string) => Promise<IrisTestResult>;
-  testHermes: (payload?: { url?: string; key?: string }) => Promise<IrisTestResult>;
-  previewVoice: (payload?: { voice?: string; key?: string }) => Promise<IrisTestResult>;
+  testGemini: (key?: string) => Promise<SevancioTestResult>;
+  testHermes: (payload?: { url?: string; key?: string }) => Promise<SevancioTestResult>;
+  previewVoice: (payload?: { voice?: string; key?: string }) => Promise<SevancioTestResult>;
   getHermesHistory: () => Promise<HermesHistoryResult>;
   listHermesSessions: () => Promise<HermesSessionsResult>;
   createHermesSession: () => Promise<{ ok: boolean; id?: string; error?: string }>;
@@ -113,12 +113,12 @@ type IrisApi = {
   sendUiContext: (context: Record<string, unknown>) => void;
   sendAudioChunk: (chunk: ArrayBuffer) => void;
   notifyBootDone: () => void;
-  onUiAction: (callback: (action: IrisUiAction) => void) => () => void;
+  onUiAction: (callback: (action: SevancioUiAction) => void) => () => void;
   onAudioChunk: (callback: (chunk: AudioChunk) => void) => () => void;
   onAudioInterrupt: (callback: () => void) => () => void;
   onSidecarEvent: (callback: (event: SidecarEvent) => void) => () => void;
 };
 
 interface Window {
-  iris: IrisApi;
+  sevancio: SevancioApi;
 }

@@ -31,7 +31,7 @@ const longResearchResult = [
   "",
   "1. Review the shortlist.",
   "2. Pick the highest-confidence option.",
-  "3. Ask Iris to send a follow-up task to Hermes with the selected direction.",
+  "3. Ask Sevancio to send a follow-up task to Hermes with the selected direction.",
   "",
   "## Notes",
   "",
@@ -49,7 +49,7 @@ export function makeUiTestData(now = Date.now()): {
       {
         id: "fixture-comms-1",
         speaker: "you",
-        text: "Iris, can you check unread emails and tell me if anything needs attention?",
+        text: "Sevancio, can you check unread emails and tell me if anything needs attention?",
       },
       {
         id: "fixture-comms-2",
@@ -121,7 +121,7 @@ export function makeUiTestData(now = Date.now()): {
       },
       {
         id: "fixture-run-003-repo-audit",
-        task: "Audit the Iris repository for open-source readiness.",
+        task: "Audit the Sevancio repository for open-source readiness.",
         status: "completed",
         output: [
           "## Open-source readiness audit",
@@ -150,21 +150,21 @@ export function makeUiTestData(now = Date.now()): {
       },
       {
         id: "fixture-run-005-weekend-post",
-        task: "Draft a short launch post for Iris.",
+        task: "Draft a short launch post for Sevancio.",
         status: "completed",
         output: "Drafted a concise post explaining Gemini Live as the conversational layer, Hermes as the worker agent, and MediaPipe gestures for hands-free UI control.",
         updatedAt: now - 300_000,
       },
       {
         id: "fixture-run-006-build-package",
-        task: "Package Iris as a macOS app and confirm app identity.",
+        task: "Package Sevancio as a macOS app and confirm app identity.",
         status: "completed",
-        output: "Built `release/mac-arm64/Iris.app`. The bundle name, display name, executable, and icon are configured as Iris.",
+        output: "Built `release/mac-arm64/Sevancio.app`. The bundle name, display name, executable, and icon are configured as Sevancio.",
         updatedAt: now - 360_000,
       },
       {
         id: "fixture-run-006b-package-readme",
-        task: "Package Iris setup notes for README.",
+        task: "Package Sevancio setup notes for README.",
         status: "completed",
         output: "Packaged README notes for macOS and Windows, including `.env` locations, Hermes gateway setup, and unsigned app caveats.",
         updatedAt: now - 365_000,

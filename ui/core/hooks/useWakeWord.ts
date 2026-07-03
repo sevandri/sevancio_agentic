@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import * as ort from "onnxruntime-web";
 
-// Local "Hey Iris" wake word. Ports the livekit-wakeword / openWakeWord inference
+// Local "Hey Sevancio" wake word. Ports the livekit-wakeword / openWakeWord inference
 // pipeline (mel-spectrogram -> speech embedding -> classifier) to the browser via
 // onnxruntime-web. Fully on-device: audio never leaves the machine, and nothing is
 // sent to Gemini/Hermes until a wake fires. Models live in public/wakeword/.
@@ -14,7 +14,7 @@ const EMB_STRIDE = 8; // mel frames between embeddings
 const N_EMB = 16; // classifier input length
 const PREDICT_INTERVAL_MS = 200;
 // Balanced default (model's eval-optimal): high enough to reject random words,
-// low enough for a clear "Hey Iris". 0.10 caused false wakes; 0.18 missed too much.
+// low enough for a clear "Hey Sevancio". 0.10 caused false wakes; 0.18 missed too much.
 const DEFAULT_THRESHOLD = 0.15;
 const COOLDOWN_MS = 2500;
 
@@ -37,8 +37,8 @@ async function createSession(url: string): Promise<ort.InferenceSession> {
 type WakeSessions = { mel: ort.InferenceSession; emb: ort.InferenceSession; cls: ort.InferenceSession };
 
 // Load the three ONNX models once and reuse them across every arm/disarm cycle, so
-// re-arming after Iris sleeps is instant (no "loading models" gap where a spoken
-// "Hey Iris" would be missed).
+// re-arming after Sevancio sleeps is instant (no "loading models" gap where a spoken
+// "Hey Sevancio" would be missed).
 let sessionsPromise: Promise<WakeSessions> | null = null;
 function getSessions(): Promise<WakeSessions> {
   if (!sessionsPromise) {
@@ -48,7 +48,7 @@ function getSessions(): Promise<WakeSessions> {
       const [mel, emb, cls] = await Promise.all([
         createSession(`${base}wakeword/melspectrogram.onnx`),
         createSession(`${base}wakeword/embedding_model.onnx`),
-        createSession(`${base}wakeword/hey_iris.onnx`),
+        createSession(`${base}wakeword/hey_sevancio.onnx`),
       ]);
       return { mel, emb, cls };
     })().catch((error) => {
@@ -144,7 +144,7 @@ export function useWakeWord(
         // rapid double-fires from the same utterance).
         if (score >= DEFAULT_THRESHOLD && now - lastWakeAt > COOLDOWN_MS) {
           lastWakeAt = now;
-          console.log(`[wakeword] ✅ WAKE — "Hey Iris" detected (score ${score.toFixed(3)})`);
+          console.log(`[wakeword] ✅ WAKE — "Hey Sevancio" detected (score ${score.toFixed(3)})`);
           onWakeRef.current();
         }
       } catch (error) {
@@ -197,7 +197,7 @@ export function useWakeWord(
         processor.connect(audioCtx.destination);
         timer = window.setInterval(predict, PREDICT_INTERVAL_MS);
         console.log(
-          `[wakeword] 🎙️ listening for "Hey Iris" @ ${audioCtx.sampleRate}Hz — say it to test (watch scores below)`,
+          `[wakeword] 🎙️ listening for "Hey Sevancio" @ ${audioCtx.sampleRate}Hz — say it to test (watch scores below)`,
         );
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error);

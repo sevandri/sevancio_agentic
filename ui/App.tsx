@@ -1002,12 +1002,12 @@ export default function App() {
 
         <footer className="deck-foot">
           <span className="build-meta">
-            IRIS · build 0.2.0 · by Ashutosh Shrivastava ·{" "}
+            SEVANCIO · build 0.2.0 · by Adri Sinaga ·{" "}
             <a href="https://x.com/ai_for_success" target="_blank" rel="noreferrer">
               X
             </a>{" "}
             ·{" "}
-            <a href="https://github.com/ASHR12/sevancio" target="_blank" rel="noreferrer">
+            <a href="https://github.com/sevandri/sevancio_agentic" target="_blank" rel="noreferrer">
               GitHub
             </a>
           </span>

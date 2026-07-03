@@ -64,7 +64,7 @@ export default function WorkStream({
       <div className="work-scroll" ref={scrollRef}>
         {tasks.length === 0 ? (
           <div className="empty">
-            <p>No Hermes runs yet. Ask Iris to take on a task.</p>
+            <p>No Hermes runs yet. Ask Sevancio to take on a task.</p>
             {testDataEnabled ? (
               <button className="demo-load" onClick={onLoadDemo}>
                 Load demo tasks

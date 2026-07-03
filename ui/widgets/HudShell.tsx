@@ -52,7 +52,7 @@ function HudCamera({
 }
 
 /**
- * Glass HUD layout: Iris floating over the whole desktop. Everything is
+ * Glass HUD layout: Sevancio floating over the whole desktop. Everything is
  * pointer-transparent except elements marked `.hud-hit` — the main process
  * toggles window click-through based on what the pointer is over, so you can
  * keep working in the apps underneath.
@@ -190,8 +190,8 @@ export default function HudShell({
                 {recentTranscript.map((line) => {
                   const self = /you|user/i.test(line.speaker);
                   return (
-                    <div className={`bubble ${self ? "self" : "iris"}`} key={line.id}>
-                      <span className="who">{self ? "You" : "Iris"}</span>
+                    <div className={`bubble ${self ? "self" : "svc"}`} key={line.id}>
+                      <span className="who">{self ? "You" : "Sevancio"}</span>
                       {line.text}
                     </div>
                   );
@@ -213,7 +213,7 @@ export default function HudShell({
       {/* Orb cluster, bottom-right */}
       <div className="hud-orb-cluster hud-hit">
         <div className={`hud-caption ${captionDim ? "dim" : ""}`}>
-          {awake ? caption : wakeWordEnabled ? "Say “Hey Iris”" : "Iris is asleep"}
+          {awake ? caption : wakeWordEnabled ? "Say “Hey Sevancio”" : "Sevancio is asleep"}
         </div>
         <div
           className="orb-stage hud-orb"

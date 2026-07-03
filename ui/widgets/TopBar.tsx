@@ -58,7 +58,7 @@ export default function TopBar({
         <button
           className="theme-toggle"
           onClick={() => window.sevancio?.toggleHud()}
-          title="Glass HUD — float Iris over your screen (⌥Space)"
+          title="Glass HUD — float Sevancio over your screen (⌥Space)"
         >
           <PictureInPicture2 size={15} />
         </button>

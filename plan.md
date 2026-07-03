@@ -1,6 +1,6 @@
 ---
-name: "Iris"
-overview: "Current implementation snapshot for Iris: a dark-only Electron/React voice companion where Gemini Live handles realtime conversation and delegates long-running work to Hermes through the local API server."
+name: "Sevancio"
+overview: "Current implementation snapshot for Sevancio: a dark-only Electron/React voice companion where Gemini Live handles realtime conversation and delegates long-running work to Hermes through the local API server."
 todos:
   - id: confirm-env
     content: "Confirm workspace folder and required secrets/env names before implementation"
@@ -26,7 +26,7 @@ todos:
 isProject: false
 ---
 
-# Iris Current Plan / Architecture
+# Sevancio Current Plan / Architecture
 
 ## Core Decision
 Use **Electron-native Gemini Live** as the realtime voice manager and **Hermes**
@@ -37,7 +37,7 @@ the active app path is:
 - Electron main owns the Gemini Live session through `@google/genai`.
 - Gemini can use built-in Google Search for quick facts.
 - Gemini delegates long-running work to Hermes via the local API server.
-- Hermes returns a `run_id` immediately; Iris keeps talking while Hermes works.
+- Hermes returns a `run_id` immediately; Sevancio keeps talking while Hermes works.
 - Source/dev workflows are cross-platform (`npm run dev` works on macOS,
   Windows, and Linux).
 - First-run onboarding wizard (and a Settings panel) collects the Gemini key,
@@ -103,7 +103,7 @@ For `gemini-3.1-flash-live-preview`, `submitHermesTask` must not wait for comple
 7. User can interrupt while Gemini speaks; playback is flushed on Live interruption events.
 8. If the user requests work, Gemini calls `submit_hermes_task`.
 9. Hermes progress streams into the Work Stream.
-10. On completion, Electron injects `SYSTEM_EVENT_HERMES_COMPLETE` into Gemini so Iris proactively summarizes the result.
+10. On completion, Electron injects `SYSTEM_EVENT_HERMES_COMPLETE` into Gemini so Sevancio proactively summarizes the result.
 11. User presses `S` to sleep; Gemini, mic, playback, and camera/gesture control stop.
 
 ## Wake Word Plan

@@ -54,9 +54,9 @@ export default function ReactorCore({
   levelRef?: { current: number };
   /** Mic level — drives the sharp radial-bar "you are talking" signature. */
   inputLevelRef?: { current: number };
-  /** Playback level — drives the smooth-wave "Iris is talking" signature. */
+  /** Playback level — drives the smooth-wave "Sevancio is talking" signature. */
   outputLevelRef?: { current: number };
-  /** Orbiting "thinking" swirl (the gap between your words and Iris's voice). */
+  /** Orbiting "thinking" swirl (the gap between your words and Sevancio's voice). */
   thinking?: boolean;
   /** Increment to fire the wake double-pulse. */
   wakeKey?: number;
@@ -326,7 +326,7 @@ export default function ReactorCore({
         }
       }
 
-      // Thinking swirl: two orbiting sparks with comet tails while Iris forms
+      // Thinking swirl: two orbiting sparks with comet tails while Sevancio forms
       // its reply (eased in/out so it never pops).
       thinkingAlphaRef.current += ((thinkingRef.current ? 1 : 0) - thinkingAlphaRef.current) * 0.07;
       const thinkAlpha = thinkingAlphaRef.current;

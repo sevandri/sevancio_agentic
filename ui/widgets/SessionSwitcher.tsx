@@ -25,7 +25,7 @@ function sessionLabel(
 
 /**
  * Main-page Hermes chat switcher (top of the Work Stream): shows the thread
- * Iris is talking in, opens a picker of past Iris sessions (api_server only),
+ * Sevancio is talking in, opens a picker of past Sevancio sessions (api_server only),
  * and starts a fresh Hermes-named thread with the + button — like picking a
  * chat in Hermes desktop, without opening Settings.
  */
@@ -124,11 +124,11 @@ export default function SessionSwitcher({
 
       {open ? (
         <div className="session-menu">
-          <div className="session-menu-head">Iris chat sessions</div>
+          <div className="session-menu-head">Sevancio chat sessions</div>
           {loading ? (
             <div className="session-empty">Loading…</div>
           ) : items.length === 0 ? (
-            <div className="session-empty">No Iris sessions yet — send Hermes a task to start one.</div>
+            <div className="session-empty">No Sevancio sessions yet — send Hermes a task to start one.</div>
           ) : (
             items.map((session) => (
               <button

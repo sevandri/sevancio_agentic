@@ -1,1 +1,1 @@
-"""Iris Hermes voice sidecar package."""
+"""Sevancio — Hermes voice sidecar package."""

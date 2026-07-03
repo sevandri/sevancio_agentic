@@ -21,7 +21,7 @@ export function useAudioPipeline(hasBridge: boolean, onLog: (level: string, mess
   const inputAnalyserRef = useRef<AnalyserNode | null>(null);
   const outputAnalyserRef = useRef<AnalyserNode | null>(null);
   // Separate meters so the orb can tell WHO is talking: your mic drives the
-  // radial-bar signature, Iris's playback drives the smooth wave.
+  // radial-bar signature, Sevancio's playback drives the smooth wave.
   const inputLevelRef = useRef(0);
   const outputLevelRef = useRef(0);
 

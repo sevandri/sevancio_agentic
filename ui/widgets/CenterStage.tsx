@@ -156,10 +156,10 @@ export default function CenterStage({
           {wakeWordEnabled ? (
             <div className="wake-say">
               <Mic size={15} />
-              Say <b>“Hey Iris”</b>
+              Say <b>“Hey Sevancio”</b>
             </div>
           ) : (
-            <div className="wake-say">Iris is asleep</div>
+            <div className="wake-say">Sevancio is asleep</div>
           )}
           <div className="wake-keys">
             {wakeWordEnabled ? "or press " : "press "}

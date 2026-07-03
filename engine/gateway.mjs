@@ -1256,7 +1256,7 @@ function createWindow() {
     fullscreenable: false,
     ...(appIcon ? { icon: appIcon } : {}),
     webPreferences: {
-      preload: path.join(repoRoot, "electron", "preload.cjs"),
+      preload: path.join(repoRoot, "engine", "bridge.cjs"),
       contextIsolation: true,
       nodeIntegration: false,
       // Audio capture/playback and the HUD must keep running when occluded.

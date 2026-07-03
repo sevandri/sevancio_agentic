@@ -22,7 +22,7 @@ export default function CommsPanel({
       <div className="comms-scroll" ref={scrollRef}>
         {transcript.length === 0 ? (
           <div className="empty">
-            <p>No conversation yet. Wake Iris and start talking.</p>
+            <p>No conversation yet. Wake Sevancio and start talking.</p>
             {testDataEnabled ? (
               <button className="demo-load" onClick={onLoadDemo}>
                 Load demo comms
@@ -33,8 +33,8 @@ export default function CommsPanel({
           transcript.map((line) => {
             const self = /you|user/i.test(line.speaker);
             return (
-              <div className={`bubble ${self ? "self" : "iris"}`} key={line.id}>
-                <span className="who">{self ? "You" : "Iris"}</span>
+              <div className={`bubble ${self ? "self" : "svc"}`} key={line.id}>
+                <span className="who">{self ? "You" : "Sevancio"}</span>
                 {line.text}
               </div>
             );

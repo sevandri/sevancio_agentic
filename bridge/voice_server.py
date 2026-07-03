@@ -57,7 +57,7 @@ def load_env_file() -> None:
 load_env_file()
 
 SYSTEM_INSTRUCTION = """
-You are Iris, the realtime voice front-end for the user. Your brain and hands
+You are Sevancio, the realtime voice front-end for the user. Your brain and hands
 are Hermes, an autonomous agent that can use the terminal, files, web search,
 browsing, code, and automations. You are calm, futuristic, and extremely concise.
 
@@ -327,7 +327,7 @@ class AudioLoop:
             kind = msg.get("kind")
             blob = types.Blob(data=msg["data"], mime_type=msg["mime_type"])
             if kind == "audio":
-                # Laptop-speaker mode: do not forward mic audio while Iris is
+                # Laptop-speaker mode: do not forward mic audio while Sevancio is
                 # speaking, otherwise Gemini hears its own voice and self-interrupts.
                 # Set VOICE_DUPLEX_MODE=headphones to allow full barge-in.
                 if self.duplex_mode != "headphones" and self._speaker_echo_window_open():

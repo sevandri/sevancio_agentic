@@ -6,11 +6,11 @@ import type { HandoffTone, ReactorState } from "../types";
 // Arc-reactor accent color per state (matches ReactorCore palettes) — drives the
 // surrounding ring/radar so it stays the same color as the orb.
 const ORB_ACCENT: Record<ReactorState, string> = {
-  idle: "120, 170, 150",
-  online: "18, 163, 148",
-  listening: "40, 205, 170",
-  speaking: "238, 122, 92",
-  working: "120, 180, 120",
+  idle: "120, 150, 200",
+  online: "56, 132, 255",
+  listening: "37, 99, 235",
+  speaking: "30, 80, 200",
+  working: "100, 160, 220",
 };
 
 function Telemetry({

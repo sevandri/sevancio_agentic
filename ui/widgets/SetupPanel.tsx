@@ -503,25 +503,33 @@ export default function SetupPanel({
         </header>
         <div className="setup-scroll">{body}</div>
         <footer className="setup-foot">
-          <button className="setup-btn ghost" onClick={() => setStep((s) => Math.max(0, s - 1))} disabled={isFirst}>
-            <ChevronLeft size={14} />
-            Back
-          </button>
-          {isLast ? (
-            <button className="setup-btn primary" onClick={finishWizard} disabled={saving || !keyReady}>
+          <div className="setup-foot-left">
+            <button className="setup-btn ghost" onClick={() => setStep((s) => Math.max(0, s - 1))} disabled={isFirst}>
+              <ChevronLeft size={14} />
+              Back
+            </button>
+          </div>
+          <div className="setup-foot-right">
+            <button className="setup-btn ghost" onClick={async () => { await save(); onClose(); }} disabled={saving}>
               {saving ? <Loader2 size={14} className="spin" /> : <Check size={14} />}
-              Save & Start Sevancio
+              Save
             </button>
-          ) : (
-            <button
-              className="setup-btn primary"
-              onClick={() => setStep((s) => Math.min(WIZARD_STEPS.length - 1, s + 1))}
-              disabled={!canNext}
-            >
-              {isFirst ? "Get started" : "Next"}
-              <ChevronRight size={14} />
-            </button>
-          )}
+            {isLast ? (
+              <button className="setup-btn primary" onClick={finishWizard} disabled={saving || !keyReady}>
+                {saving ? <Loader2 size={14} className="spin" /> : <Check size={14} />}
+                Save & Start Sevancio
+              </button>
+            ) : (
+              <button
+                className="setup-btn primary"
+                onClick={() => setStep((s) => Math.min(WIZARD_STEPS.length - 1, s + 1))}
+                disabled={!canNext}
+              >
+                {isFirst ? "Get started" : "Next"}
+                <ChevronRight size={14} />
+              </button>
+            )}
+          </div>
         </footer>
       </div>
     </div>

@@ -1,53 +1,53 @@
 /* ============================================
    Sevancio — Design System Tokens
-   Ocean-Deep Aesthetic: teal/cyan + aurora violet
+   Ocean-Blue Aesthetic: deep navy + electric blue
    ============================================ */
 :root {
   /* ── Surface & Background ── */
-  --svc-bg-deepest: #020408;
-  --svc-bg-main:    #060a10;
-  --svc-bg-surface: #0b1018;
-  --svc-bg-card:    #0e1520;
-  --svc-bg-elevated:#121a28;
-  --svc-bg-glass:   rgba(9, 14, 24, 0.72);
-  --svc-bg-hover:   rgba(0, 212, 255, 0.06);
-  --svc-bg-active:  rgba(0, 212, 255, 0.10);
+  --svc-bg-deepest: #02040a;
+  --svc-bg-main:    #060a12;
+  --svc-bg-surface: #0b101c;
+  --svc-bg-card:    #0e1524;
+  --svc-bg-elevated:#121a2e;
+  --svc-bg-glass:   rgba(9, 14, 28, 0.72);
+  --svc-bg-hover:   rgba(56, 132, 255, 0.06);
+  --svc-bg-active:  rgba(56, 132, 255, 0.10);
 
   /* ── Borders ── */
-  --svc-border:      #192230;
-  --svc-border-light:#1f2a3a;
-  --svc-border-focus:#00d4ff;
+  --svc-border:      #19223a;
+  --svc-border-light:#1f2a44;
+  --svc-border-focus:#3884ff;
 
   /* ── Core Colors ── */
-  --svc-teal:        #00d4ff;
-  --svc-teal-dim:    #0891b2;
-  --svc-teal-dark:   #0a5d7a;
-  --svc-aurora:      #7b61ff;
-  --svc-aurora-dim:  #6d28d9;
+  --svc-teal:        #3884ff;
+  --svc-teal-dim:    #2563eb;
+  --svc-teal-dark:   #1d4ed8;
+  --svc-aurora:      #60a5fa;
+  --svc-aurora-dim:  #3b82f6;
   --svc-ocean:       #0ea5e9;
   --svc-emerald:     #4ade80;
   --svc-coral:       #f87171;
   --svc-amber:       #fbbf24;
 
   /* ── Text ── */
-  --svc-text:        #c8d0da;
-  --svc-text-dim:    #8896a8;
-  --svc-text-muted:  #5a6a7e;
-  --svc-heading:     #e2e8f0;
+  --svc-text:        #c8d4e8;
+  --svc-text-dim:    #8898b8;
+  --svc-text-muted:  #5a6a8a;
+  --svc-heading:     #e2e8f4;
   --svc-heading-bright: #f0f4ff;
 
   /* ── Gradient ── */
-  --svc-gradient-primary:  linear-gradient(135deg, #00d4ff 0%, #7b61ff 100%);
-  --svc-gradient-warm:     linear-gradient(135deg, #00d4ff 0%, #0ea5e9 50%, #7b61ff 100%);
-  --svc-gradient-glow:     linear-gradient(180deg, rgba(0,212,255,0.3) 0%, transparent 100%);
-  --svc-gradient-card:     linear-gradient(180deg, rgba(0,212,255,0.04) 0%, rgba(123,97,255,0.02) 100%);
+  --svc-gradient-primary:  linear-gradient(135deg, #3884ff 0%, #60a5fa 100%);
+  --svc-gradient-warm:     linear-gradient(135deg, #3884ff 0%, #0ea5e9 50%, #60a5fa 100%);
+  --svc-gradient-glow:     linear-gradient(180deg, rgba(56,132,255,0.3) 0%, transparent 100%);
+  --svc-gradient-card:     linear-gradient(180deg, rgba(56,132,255,0.04) 0%, rgba(96,165,250,0.02) 100%);
 
   /* ── Shadows & Glows ── */
   --svc-shadow-card:  0 2px 16px rgba(0,0,0,0.4);
   --svc-shadow-elevated: 0 4px 32px rgba(0,0,0,0.5);
-  --svc-shadow-focus: 0 0 20px rgba(0,212,255,0.2);
-  --svc-glow-teal:   0 0 12px rgba(0,212,255,0.3);
-  --svc-glow-aurora: 0 0 12px rgba(123,97,255,0.3);
+  --svc-shadow-focus: 0 0 20px rgba(56,132,255,0.2);
+  --svc-glow-teal:   0 0 12px rgba(56,132,255,0.3);
+  --svc-glow-aurora: 0 0 12px rgba(96,165,250,0.3);
 
   /* ── Typography ── */
   --svc-font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;

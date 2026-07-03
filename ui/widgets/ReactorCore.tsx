@@ -10,11 +10,11 @@ type Palette = {
 };
 
 const PALETTES: Record<ReactorState, Palette> = {
-  idle: { primary: "120, 170, 150", secondary: "150, 185, 165", accent: "210, 225, 218", glow: "150, 205, 180" },
-  online: { primary: "18, 163, 148", secondary: "70, 200, 175", accent: "230, 255, 248", glow: "60, 195, 170" },
-  listening: { primary: "40, 205, 170", secondary: "18, 163, 148", accent: "236, 255, 250", glow: "70, 214, 185" },
-  speaking: { primary: "238, 122, 92", secondary: "255, 188, 108", accent: "255, 250, 230", glow: "255, 154, 104" },
-  working: { primary: "120, 180, 120", secondary: "40, 200, 170", accent: "252, 255, 230", glow: "130, 195, 150" },
+  idle: { primary: "120, 150, 200", secondary: "150, 175, 215", accent: "210, 225, 245", glow: "150, 180, 220" },
+  online: { primary: "56, 132, 255", secondary: "96, 165, 250", accent: "230, 245, 255", glow: "80, 150, 255" },
+  listening: { primary: "37, 99, 235", secondary: "59, 130, 246", accent: "236, 248, 255", glow: "70, 140, 245" },
+  speaking: { primary: "30, 80, 200", secondary: "56, 132, 255", accent: "230, 240, 255", glow: "50, 120, 235" },
+  working: { primary: "100, 160, 220", secondary: "56, 132, 255", accent: "240, 248, 255", glow: "120, 170, 230" },
 };
 
 function drawArc(

@@ -166,3 +166,23 @@
   justify-content: flex-end;
   gap: var(--svc-space-sm);
 }
+
+.setup-foot {
+  padding: var(--svc-space-lg) var(--svc-space-xl);
+  border-top: 1px solid var(--svc-border);
+  display: flex;
+  align-items: center;
+  gap: var(--svc-space-sm);
+}
+
+.setup-foot-left {
+  display: flex;
+  gap: var(--svc-space-sm);
+  margin-right: auto;
+}
+
+.setup-foot-right {
+  display: flex;
+  gap: var(--svc-space-sm);
+  margin-left: auto;
+}

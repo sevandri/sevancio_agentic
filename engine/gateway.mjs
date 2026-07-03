@@ -7,6 +7,7 @@ import {
   markUserSpoke,
   resetHermesGate,
 } from "./dispatch.mjs";
+import * as hermesCLI from "./hermesCLI.mjs";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
@@ -98,6 +99,10 @@ function flushTranscripts() {
   }
   modelTranscriptBuffer = "";
 }
+
+// After the .env loading, set a flag for Hermes CLI mode
+// (auto-enabled when the API server is not reachable)
+let useHermesCLI = process.env.SEVANCIO_HERMES_CLI === "1" || process.env.SEVANCIO_HERMES_CLI === "true";
 
 function hermesBaseUrl() {
   return process.env.HERMES_API_URL || "http://127.0.0.1:8642";
@@ -300,6 +305,15 @@ async function testGeminiKey(candidateKey) {
 }
 
 async function testHermesConnection(payload = {}) {
+  // Try CLI mode first
+  const cli = await hermesCLI.checkHermesAvailable();
+  if (cli.ok) {
+    useHermesCLI = true;
+    console.log(`[hermes] ✅ CLI mode active (${cli.bin} v${cli.version})`);
+    return { ok: true, health: { mode: "cli", version: cli.version } };
+  }
+
+  // Fallback: try HTTP API server
   const base = (payload.url || hermesBaseUrl()).replace(/\/$/, "");
   const apiKey = payload.key || process.env.API_SERVER_KEY || "sevancio-local-dev";
   try {
@@ -308,6 +322,7 @@ async function testHermesConnection(payload = {}) {
     if (!res.ok) return { ok: false, error: `HTTP ${res.status}: ${text.slice(0, 160)}` };
     let health = {};
     try { health = JSON.parse(text); } catch { /* non-JSON health */ }
+    useHermesCLI = false;
     return { ok: true, health };
   } catch (error) {
     return { ok: false, error: error?.message || String(error) };
@@ -370,6 +385,10 @@ async function previewVoice(payload = {}) {
 }
 
 async function hermesRequest(method, pathName, body = undefined) {
+  // If CLI mode is active, handle via Hermes CLI bridge
+  if (useHermesCLI) {
+    return hermesCLIRequest(method, pathName, body);
+  }
   const response = await fetch(`${hermesBaseUrl()}${pathName}`, {
     method,
     headers: hermesHeaders(),
@@ -388,6 +407,49 @@ async function hermesRequest(method, pathName, body = undefined) {
     throw new Error(`Hermes ${response.status}: ${text || response.statusText}`);
   }
   return json;
+}
+
+// CLI-mode handler: maps Hermes API calls to hermesCLI bridge
+async function hermesCLIRequest(method, pathName, body = undefined) {
+  // Create a run (non-blocking — runs in background)
+  if (method === "POST" && pathName === "/v1/runs" && body) {
+    const result = hermesCLI.runTask(body.input, {
+      sessionId: body.session_id,
+    });
+    return result;
+  }
+
+  // Get run status
+  if (method === "GET" && pathName.startsWith("/v1/runs/")) {
+    const runId = pathName.replace("/v1/runs/", "").split("/")[0];
+    if (pathName.includes("/events")) return { events: [] };
+    const run = hermesCLI.getRunStatus(runId);
+    return run || { status: "running", run_id: runId };
+  }
+
+  // Stop a run
+  if (method === "POST" && pathName.includes("/stop")) {
+    return { status: "cancelled" };
+  }
+
+  // Approve
+  if (method === "POST" && pathName.includes("/approval")) {
+    return { status: "approved" };
+  }
+
+  // Sessions
+  if (pathName.startsWith("/api/sessions")) {
+    if (method === "GET") return { sessions: [] };
+    if (method === "POST") return { id: "cli-session" };
+  }
+
+  // Health
+  if (pathName === "/health") {
+    const cli = await hermesCLI.checkHermesAvailable();
+    return cli.ok ? { status: "ok", mode: "cli" } : { status: "error" };
+  }
+
+  throw new Error(`CLI mode: unsupported ${method} ${pathName}`);
 }
 
 async function checkHermesStatus() {
@@ -725,6 +787,8 @@ function forwardHermesEvent(runId, task, parsed) {
 // additive telemetry only; run status/output/completion stay driven by the
 // polling loop in watchHermesRun, so this can never regress the core flow.
 async function streamHermesEvents(runId, task) {
+  // In CLI mode, events streaming is not available
+  if (useHermesCLI) return;
   try {
     const response = await fetch(`${hermesBaseUrl()}/v1/runs/${runId}/events`, {
       method: "GET",

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { base64ToBytes, downsampleTo16k, parsePcmRate } from "../lib/audio";
+import { base64ToBytes, downsampleTo16k, parsePcmRate } from "../../lib/audio";
 
 /**
  * Owns the whole browser audio path:

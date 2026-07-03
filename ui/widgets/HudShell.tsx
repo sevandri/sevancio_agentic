@@ -4,7 +4,7 @@ import ReactorCore from "./ReactorCore";
 import WorkCard from "./WorkCard";
 import { HandSkeleton } from "./CameraDock";
 import type { HandoffTone, ReactorState, TaskCard, TranscriptLine } from "../types";
-import type { HandState } from "../hooks/useHandControl";
+import type { HandState } from "../core/hooks/useHandControl";
 import { acceptedKey } from "../lib/tasks";
 
 const ORB_ACCENT: Record<ReactorState, string> = {

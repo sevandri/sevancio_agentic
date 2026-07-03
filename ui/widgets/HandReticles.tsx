@@ -1,4 +1,4 @@
-import type { HandState } from "../hooks/useHandControl";
+import type { HandState } from "../core/hooks/useHandControl";
 
 // Floating gesture cursors (one per tracked hand) rendered above everything.
 export default function HandReticles({

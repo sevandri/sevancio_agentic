@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { TaskCard } from "../types";
 import { normalizeMarkdown, shortRunId } from "../lib/tasks";
-import type { HandState } from "../hooks/useHandControl";
+import type { HandState } from "../core/hooks/useHandControl";
 import { StepTimeline } from "./WorkCard";
 
 export default function ReaderOverlay({

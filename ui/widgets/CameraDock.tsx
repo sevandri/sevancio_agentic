@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Camera } from "lucide-react";
-import type { HandState } from "../hooks/useHandControl";
+import type { HandState } from "../core/hooks/useHandControl";
 
 const HAND_CONNECTIONS = [
   [0, 1], [1, 2], [2, 3], [3, 4],

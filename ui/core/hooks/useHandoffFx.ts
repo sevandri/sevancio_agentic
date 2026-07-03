@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type RefObject } from "react";
-import type { HandoffTone, Pulse, TaskCard } from "../types";
-import { TERMINAL, acceptedKey } from "../lib/tasks";
+import type { HandoffTone, Pulse, TaskCard } from "../../types";
+import { TERMINAL, acceptedKey } from "../../lib/tasks";
 
 /**
  * Purely-visual delegation handoff effects (orb <-> Work Stream): comet pulses,

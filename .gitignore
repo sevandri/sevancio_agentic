@@ -1,0 +1,11 @@
+node_modules/
+dist/
+release/
+.env
+*.local
+.DS_Store
+Thumbs.db
+*.log
+wake-model/hey_sevancio/hey_sevancio.pt
+wake-model/hey_iris-quick-4k/
+wake-model/hey_iris-full-10k/

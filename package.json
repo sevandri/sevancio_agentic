@@ -1,0 +1,82 @@
+{
+  "name": "sevancio-voice",
+  "productName": "Sevancio",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "description": "A futuristic Gemini Live voice companion that delegates real work to Hermes Agent.",
+  "homepage": "https://github.com/sevandri/sevancio_agentic#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sevandri/sevancio_agentic.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sevandri/sevancio_agentic/issues"
+  },
+  "type": "module",
+  "main": "engine/gateway.mjs",
+  "scripts": {
+    "dev": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on tcp:5173 && node scripts/boot.mjs\"",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "start": "npm run build && node scripts/boot.mjs --prod",
+    "start:prod": "node scripts/boot.mjs --prod",
+    "package:mac": "npm run build && electron-builder --mac --dir",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "package:win": "npm run build && electron-builder --win --dir",
+    "dist:win": "npm run build && electron-builder --win",
+    "electron": "node scripts/boot.mjs",
+    "bridge": "node scripts/helper.mjs bridge",
+    "check:python": "node scripts/helper.mjs check"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource-variable/space-grotesk": "^5.2.10",
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "@fontsource/outfit": "^5.2.5",
+    "@fontsource/satoshi": "^5.2.5",
+    "@google/genai": "^2.10.0",
+    "@mediapipe/tasks-vision": "^0.10.35",
+    "@vitejs/plugin-react": "latest",
+    "lucide-react": "latest",
+    "onnxruntime-web": "^1.27.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "typescript": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "concurrently": "latest",
+    "electron": "latest",
+    "electron-builder": "^26.15.3",
+    "wait-on": "latest"
+  },
+  "build": {
+    "appId": "app.sevancio.voice",
+    "productName": "Sevancio",
+    "directories": {
+      "output": "release",
+      "buildResources": "assets"
+    },
+    "files": [
+      "dist/**",
+      "engine/**",
+      "assets/icon.png",
+      "assets/tray-icon.png",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "icon": "assets/icon.png",
+      "target": ["dir"]
+    },
+    "win": {
+      "target": ["dir"]
+    }
+  }
+}

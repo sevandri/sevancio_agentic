@@ -1,0 +1,259 @@
+/* ============================================
+   Sevancio — Orb FX
+   ============================================ */
+.orb-arena {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.orb-stage {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Core orb */
+.orb-core {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: var(--svc-radius-orb);
+  transition: all var(--svc-transition-slow);
+}
+
+.orb-core.idle {
+  background: radial-gradient(circle at 40% 40%, rgba(0,212,255,0.15), rgba(0,212,255,0.05) 50%, transparent);
+  border: 1px solid rgba(0,212,255,0.1);
+  box-shadow: 0 0 30px rgba(0,212,255,0.05);
+}
+
+.orb-core.online {
+  background: radial-gradient(circle at 40% 40%, rgba(0,212,255,0.2), rgba(0,212,255,0.08) 50%, transparent);
+  border: 1px solid rgba(0,212,255,0.2);
+  box-shadow: 0 0 40px rgba(0,212,255,0.1);
+}
+
+.orb-core.listening {
+  background: radial-gradient(circle at 40% 40%, rgba(0,212,255,0.3), rgba(0,212,255,0.1) 50%, transparent);
+  border: 1px solid rgba(0,212,255,0.3);
+  box-shadow: 0 0 50px rgba(0,212,255,0.2);
+  animation: listenPulse 0.8s ease-in-out infinite;
+}
+
+.orb-core.speaking {
+  background: radial-gradient(circle at 40% 40%, rgba(123,97,255,0.3), rgba(123,97,255,0.1) 50%, transparent);
+  border: 1px solid rgba(123,97,255,0.3);
+  box-shadow: 0 0 50px rgba(123,97,255,0.2);
+  animation: speakPulse 0.6s ease-in-out infinite;
+}
+
+.orb-core.working {
+  background: radial-gradient(circle at 40% 40%, rgba(0,212,255,0.25), rgba(123,97,255,0.08) 50%, transparent);
+  border: 1px solid rgba(0,212,255,0.25);
+  box-shadow: 0 0 50px rgba(0,212,255,0.15);
+  animation: workPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes listenPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50%      { transform: scale(1.04); opacity: 1; }
+}
+
+@keyframes speakPulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(0.96); }
+}
+
+@keyframes workPulse {
+  0%, 100% { opacity: 0.7; }
+  50%      { opacity: 1; }
+}
+
+/* Orb rings */
+.orb-ring {
+  position: absolute;
+  border-radius: var(--svc-radius-orb);
+  border: 1px solid;
+  opacity: 0;
+  transition: opacity var(--svc-transition), transform var(--svc-transition);
+}
+
+.orb-ring.r1 { width: 120px; height: 120px; }
+.orb-ring.r2 { width: 140px; height: 140px; }
+.orb-ring.r3 { width: 160px; height: 160px; }
+
+.orb-core.listening ~ .orb-ring.r1,
+.orb-core.speaking ~ .orb-ring.r1 {
+  opacity: 0.3;
+  border-color: var(--svc-teal);
+  animation: ringExpand 2s ease-in-out infinite;
+}
+
+.orb-core.speaking ~ .orb-ring.r1 {
+  border-color: var(--svc-aurora);
+}
+
+@keyframes ringExpand {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50%      { transform: scale(1.06); opacity: 0.1; }
+}
+
+/* Orb voice signature bars */
+.orb-bars {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orb-bar {
+  position: absolute;
+  width: 2px;
+  background: var(--svc-gradient-primary);
+  border-radius: var(--svc-radius-full);
+  opacity: 0;
+  transition: opacity var(--svc-transition), height var(--svc-transition-fast);
+  transform-origin: center;
+}
+
+.orb-core.listening ~ .orb-bars .orb-bar {
+  opacity: 0.5;
+}
+
+.orb-core.speaking ~ .orb-bars .orb-bar {
+  opacity: 0.4;
+}
+
+/* Orb flash (completion/detection) */
+.orb-flash {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  border-radius: var(--svc-radius-orb);
+  pointer-events: none;
+  animation: flashFade 0.7s ease-out forwards;
+}
+
+.orb-flash.amber {
+  background: radial-gradient(circle, rgba(251,191,36,0.3), transparent);
+}
+
+.orb-flash.success {
+  background: radial-gradient(circle, rgba(74,222,128,0.3), transparent);
+}
+
+.orb-flash.error {
+  background: radial-gradient(circle, rgba(248,113,113,0.3), transparent);
+}
+
+@keyframes flashFade {
+  0%   { opacity: 1; transform: scale(0.8); }
+  100% { opacity: 0; transform: scale(1.6); }
+}
+
+/* Orb thinking swirl */
+.orb-think {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: var(--svc-radius-orb);
+  border: 2px solid transparent;
+  border-top-color: var(--svc-teal);
+  border-right-color: var(--svc-aurora);
+  opacity: 0;
+  transition: opacity var(--svc-transition);
+  animation: thinkSpin 1.2s linear infinite;
+}
+
+.orb-think.visible {
+  opacity: 0.5;
+}
+
+@keyframes thinkSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Orb wake double-pulse */
+.orb-wake {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: var(--svc-radius-orb);
+  pointer-events: none;
+}
+
+.orb-wake.pulse {
+  animation: wakePulse 0.5s ease-out forwards;
+}
+
+@keyframes wakePulse {
+  0%   { box-shadow: 0 0 0 0 rgba(0,212,255,0.4); }
+  100% { box-shadow: 0 0 0 40px rgba(0,212,255,0); }
+}
+
+/* Orb ripple (user words confirmed) */
+.orb-ripple {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: var(--svc-radius-orb);
+  pointer-events: none;
+}
+
+.orb-ripple.wave {
+  animation: ripple 0.5s ease-out forwards;
+}
+
+@keyframes ripple {
+  0%   { box-shadow: 0 0 0 0 rgba(0,212,255,0.2), 0 0 0 0 rgba(123,97,255,0.1); }
+  100% { box-shadow: 0 0 0 30px rgba(0,212,255,0), 0 0 0 50px rgba(123,97,255,0); }
+}
+
+/* Caption text */
+.orb-caption {
+  margin-top: var(--svc-space-lg);
+  font-size: var(--svc-font-size-sm);
+  color: var(--svc-text-dim);
+  text-align: center;
+  max-width: 320px;
+  line-height: 1.5;
+}
+
+.orb-caption.dim { opacity: 0.5; }
+
+/* Mic mute button */
+.orb-mute-btn {
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--svc-radius-full);
+  border: 1px solid var(--svc-border);
+  background: var(--svc-bg-card);
+  color: var(--svc-text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--svc-transition);
+  font-size: 12px;
+}
+
+.orb-mute-btn:hover {
+  background: var(--svc-bg-elevated);
+  border-color: var(--svc-teal-dim);
+}
+
+.orb-mute-btn.muted {
+  border-color: var(--svc-coral);
+  color: var(--svc-coral);
+}

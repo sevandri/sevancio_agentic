@@ -1,0 +1,144 @@
+/* ============================================
+   Sevancio — Glass HUD Mode
+   ============================================ */
+.aether-shell {
+  position: fixed;
+  inset: 0;
+  z-index: var(--svc-z-hud);
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.aether-shell .glass-hit {
+  pointer-events: auto;
+}
+
+/* HUD layout */
+.glass-layout {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  gap: var(--svc-space-lg);
+  pointer-events: none;
+}
+
+.glass-layout > * {
+  pointer-events: auto;
+}
+
+/* HUD chips (collapsed task/comms panels) */
+.glass-chip {
+  background: var(--svc-bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--svc-border);
+  border-radius: var(--svc-radius-full);
+  padding: 8px 16px;
+  font-size: var(--svc-font-size-xs);
+  color: var(--svc-text-dim);
+  cursor: pointer;
+  transition: all var(--svc-transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.glass-chip:hover {
+  border-color: var(--svc-teal-dim);
+  color: var(--svc-text);
+}
+
+.glass-chip .chip-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.glass-chip .chip-indicator.active {
+  background: var(--svc-teal);
+  box-shadow: 0 0 8px rgba(0,212,255,0.4);
+}
+
+.glass-chip .chip-indicator.done {
+  background: var(--svc-emerald);
+  box-shadow: 0 0 8px rgba(74,222,128,0.4);
+}
+
+/* HUD expanded panels */
+.glass-panel {
+  position: absolute;
+  bottom: 160px;
+  width: 380px;
+  max-height: 60vh;
+  background: var(--svc-bg-glass);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--svc-border);
+  border-radius: var(--svc-radius-xl);
+  overflow: hidden;
+  pointer-events: auto;
+  animation: panelIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.glass-panel.left {
+  left: calc(50% - 400px);
+}
+
+.glass-panel.right {
+  right: calc(50% - 400px);
+}
+
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* HUD orb area */
+.glass-orb-area {
+  position: absolute;
+  bottom: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: auto;
+}
+
+/* HUD caption */
+.glass-caption {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--svc-font-size-sm);
+  color: var(--svc-text-dim);
+  white-space: nowrap;
+  pointer-events: none;
+  text-align: center;
+}
+
+.glass-caption.dim {
+  opacity: 0.5;
+}
+
+/* HUD camera tile */
+.glass-camera {
+  position: absolute;
+  bottom: 80px;
+  right: 40px;
+  width: 120px;
+  height: 90px;
+  border-radius: var(--svc-radius);
+  overflow: hidden;
+  pointer-events: auto;
+  border: 1px solid var(--svc-border);
+  background: var(--svc-bg-deepest);
+}
+
+.glass-camera video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

@@ -15,11 +15,21 @@ import os from "node:os";
 // Resolve the `hermes` binary
 // ---------------------------------------------------------------------------
 function findHermes() {
+  // 1. Check HERMES_BIN env var first (set by Sevancio setup wizard)
+  const envBin = process.env.HERMES_BIN || process.env.SEVANCIO_HERMES_BIN;
+  if (envBin) {
+    try { if (fs.existsSync(envBin)) return envBin; } catch { /* ignore */ }
+  }
+
+  // 2. Check common locations
   const candidates = [
     "hermes",
     path.join(os.homedir(), ".local", "bin", "hermes"),
     path.join(os.homedir(), "AppData", "Local", "hermes", "bin", "hermes.exe"),
     path.join(os.homedir(), "AppData", "Local", "Programs", "hermes", "hermes.exe"),
+    // Hermes-agent venv (common Windows install path)
+    path.join(os.homedir(), "AppData", "Local", "hermes", "hermes-agent", "venv", "Scripts", "hermes.exe"),
+    path.join(os.homedir(), "AppData", "Local", "hermes", "hermes-agent", "venv", "bin", "hermes"),
   ];
   for (const base of candidates) {
     for (const ext of ["", ".cmd", ".exe", ".bat"]) {
